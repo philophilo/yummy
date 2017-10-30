@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>
+			Bootstrap 101 template
+		</title>
+		
+		<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../static/css/style.css" rel="stylesheet">
+		
+		<style>
+		body
+		{
+			padding-top: 50px;
+		}
+		
+		</style>
+		
+	</head>
+	
+	<body data-spy="scroll" data-target="#my-navbar">
+		
+		<!-- Nav bar -->
+		<nav class="navbar navbar-inverse navbar-fixed-top" id="my-navbar">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="buton" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse" style="border:1px #fff solid;">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					
+					<a href="#" class="navbar-brand"><img src="../static/images/recipe-logo.png"></a>
+					
+				</div> <!-- end header -->
+				<div class="collapse navbar-collapse" id="navbar-collapse">
+					
+					<ul class="nav navbar-nav navbar-right">
+						<li class=""><a href="#">Recipes <span class="sr-only">(current)</span></a></li>
+						<li class="active dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Edit profile</a></li>
+								<li><a href="#">Add to Recipes</a></li>
+								<li><a href="#">My Recipes</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="#">Log out</a></li>
+							</ul>
+						</li>
+					</ul>
+					<form class="navbar-form navbar-right">
+						<div class="form-group has-feedback ">
+							<input type="text" class="form-control searcher" placeholder="Search" />
+							<i class="glyphicon glyphicon-search form-control-feedback"></i>
+						</div> 
+					</form>
+					
+				</div>
+			</div><!-- end container -->
+		</nav><!-- end navbar -->
+		
+		<div class="container wrapper editor-wrapper">
+			<section>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="media-wrapper profile-editor">
+							<div class="image-display">
+								<img src="../static/images/user.png">
+							</div>
+							<form class="hidden-border form-horizontal ">
+								<div class="form-group">
+									<label for="user-name" class="col-lg-2 control-label">Name</label>
+								
+									<div class="col-lg-10">
+										<input type="text" class="form-control" id="user-name" value="Firstname Lastname">
+									</div>
+								</div><!-- end form group -->
+								
+								<div class="form-group">
+									<label for="post-detail" class="col-lg-2 control-label">About</label>
+								
+									<div class="col-lg-10">
+										<textarea class="form-control" id="post-detail"  cols="20" rows="10">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type </textarea>
+									</div>
+								</div><!-- end form group -->
+								
+								<div class="form-group">
+									<label for="post-due" class="col-lg-2 control-label">Date of birth</label>
+								
+									<div class="col-lg-10">
+										<input type="date" class="form-control" id="post-due" value="01/01/1990">
+									</div>
+								</div><!-- end form group -->
+								
+								
+								<div class="form-group">
+									<div class="col-lg-10 col-lg-offset-2">
+										<button type="submit" class="btn btn-primary pull-right silent">Edit</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						
+					</div>
+				
+				
+				
+					<div class="col-md-6">
+						<div class="password-form">
+							<h3>Change password</h3>
+							<form action="" class="form-horizontal">
+								<div class="form-group">
+									<label for="user-post" class="col-lg-2 control-label">Current password</label>
+								
+									<div class="col-lg-10">
+										<input type="text" class="form-control" id="user-post" placeholder="current password">
+									</div>
+								</div><!-- end form group -->
+								
+								<div class="form-group">
+									<label for="user-post" class="col-lg-2 control-label">New password</label>
+								
+									<div class="col-lg-10">
+										<input type="password" class="form-control" id="user-post" placeholder="new password">
+									</div>
+								</div><!-- end form group -->
+								
+								<div class="form-group">
+									<label for="post-due" class="col-lg-2 control-label">Confirm password</label>
+								
+									<div class="col-lg-10">
+										<input type="date" class="form-control" id="post-due" placeholder="confirm password">
+									</div>
+								</div><!-- end form group -->
+								
+								
+								<div class="form-group">
+									<div class="col-lg-10 col-lg-offset-2">
+										<button type="submit" class="btn btn-primary pull-right">Submit</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				
+					
+				</div>
+			</section>
+		</div>
+		<script src="../static/js/jquery.js"></script>
+		<script src="../static/js/bootstrap.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function(){
+				
+				$('form').click(function(){
+					
+					if (!$(this).hasClass('.hidden-border')){
+						$(this).removeClass('hidden-border');
+						$(this).find('button').removeClass('silent');
+					}
+					
+				});
+				
+				$('form').focusout(function(){
+					$(this).addClass('hidden-border');
+					$(this).find('button').addClass('silent');
+				});
+				
+			});
+		</script>
+		
+	</body>
+	
+</html>
