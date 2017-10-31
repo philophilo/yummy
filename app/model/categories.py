@@ -5,7 +5,6 @@ class Categories():
         self.recipes = {}
 
     def create_recipe(self, recipe):
-        print recipe.id, self.recipes.keys()
         if recipe.id in self.recipes.keys():
             return False
         self.recipes[recipe.id] = recipe
