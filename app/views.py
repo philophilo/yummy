@@ -34,3 +34,25 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    error = None
+    if request.method == 'POST':
+        if request.form['name'] and request.form['username'] and \
+                request.form['password'] and \
+                request.form['confirm-password']:
+            if request.form['password'] == request.form[
+                'confirm-password']:
+                user = User(request.form['username'],
+                            request.form['password'],
+                            request.form['name'])
+                if application.register_user(user):
+                    flash("you have successfully signed up")
+                    return redirect(url_for('login'))
+                return render_template('index.html', error="Known \
+                                       credentials proceed to login")
+            error="password do not match"
+            return render_template("index.html", error=error)
+    error = "Method not allowed"
+    return render_template("index.html", error=error)
+
