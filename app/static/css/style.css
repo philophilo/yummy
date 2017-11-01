@@ -1,0 +1,272 @@
+body{
+	padding-top: 50px;
+}
+
+/* default button */
+.btn-default{
+	background-color: #e67e22;
+	color:#FFF;
+}
+
+/* navbar */
+.navbar-fixed-top {
+    background-color: #e67e22;
+    border-color: #000;
+	min-height: 20px;
+}
+/* Title */
+.navbar-fixed-top .navbar-brand {
+    color: #777;
+}
+
+/* Title image */
+.navbar-fixed-top .navbar-brand  img{
+    margin-top: -14px;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #5E5E5E;
+}
+/* Link */
+.navbar-default .navbar-nav > li > a {
+    color: #777;
+}
+
+
+/* container wrapper - landing page */
+.wrapper{
+	margin-top: 1%;
+	padding-bottom:5px;
+}
+
+
+/* container profiler - landing page */
+.profiler{
+	margin-top: .%;
+	padding-bottom:5px;
+	background: #ccc;
+}
+
+.profiler .profile-wrapper{
+	padding:0;
+}
+
+
+
+
+.profiler .profile-wrapper .media-top{
+	border:1px #aaa solid;
+	background:#fff;
+}
+
+
+
+/* landing page panes */
+.packing_right{
+	float:right;
+}
+
+.packing_right .signup_panel{
+	border:2px #fff solid;
+	min-width:100%;
+	float:left;
+}
+
+.packing_right .signup_panel .join{
+	min-height:20px;
+	background-color:#ccc;
+	text-align:center;
+	color:#e67e22;
+	font-size:30px;
+	padding: 2px 2px;
+	font-weight:bold;
+}
+
+.packing_right .signup_panel  .signup_form{
+	padding: 30px 30px;
+}
+
+
+.packing_left{
+	float:left;
+}
+
+.packing_left .mantra{
+	margin-top:5px;
+	padding-top: 20px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+	
+}
+
+
+/* media - updates*/
+
+.media-wrapper{
+	margin-bottom:20px;
+}
+
+.media{
+	border: 1px #ccc solid;
+	padding: 10px;
+}
+
+.upload-wrapper .media{
+	border:none;
+}
+
+.media .media-heading{
+	font-weight:bold;
+}
+
+.upload-wrapper .media .media-heading{
+	margin-bottom:20px;
+	font-size:16px;
+}
+
+
+
+.comments{
+	border-bottom: 1px #ccc solid;
+	border-right: 1px #ccc solid;
+	border-left: 1px #ccc solid;
+	padding:5px 5px 0 5px;
+	float:left;
+	min-width:100%;
+}
+
+.comments a{
+	font-size:12px;
+	margin-left:5px;
+}
+
+/* media timing */
+.media .timing{
+	margin-top:10px;
+}
+
+.media .timing .posted-date{
+	color: #ccc;
+}
+
+.media .post-content{
+	margin-top:10px;
+}
+
+.media .post-content .item-details{
+	color:#aaa
+}
+
+
+
+/* profile picture uploader */
+
+.upload-wrapper{
+	border:1px #ccc solid;
+	padding:20px;
+}
+
+.upload-wrapper .title{
+	text-align:center;
+}
+
+.upload-wrapper button{
+	margin-left:20px;
+}
+
+.upload-wrapper .image-display{
+	margin-top:30px;
+	margin-bottom:30px;
+	margin-left:45%
+}
+
+
+/* edit profile */
+.editor-wrapper{
+	padding-top: 10px;
+	border:1px #ccc solid;
+}
+
+.profile-editor{
+	border-bottom:1px #ccc solid;
+}
+
+.profile-editor .image-display{
+	margin-left:45%;
+}
+
+.profile-editor  .form-horizontal{
+	margin-top:10px;
+}
+
+.hidden-border .form-control{
+	border:hidden;
+}
+
+.password-form{
+	margin-top:10%;
+	background:#ccc;
+	padding:10px;
+}
+
+.password-form h3{
+	text-align:center;
+	font-weight:bold;
+}
+
+.silent{
+	visibility:hidden;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #333;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #555;
+    background-color: #E7E7E7;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #555;
+    background-color: #D5D5D5;
+}
+/* Caret */
+.navbar-default .navbar-nav > .dropdown > a .caret {
+    border-top-color: #777;
+    border-bottom-color: #777;
+}
+.navbar-default .navbar-nav > .dropdown > a:hover .caret,
+.navbar-default .navbar-nav > .dropdown > a:focus .caret {
+    border-top-color: #333;
+    border-bottom-color: #333;
+}
+.navbar-default .navbar-nav > .open > a .caret,
+.navbar-default .navbar-nav > .open > a:hover .caret,
+.navbar-default .navbar-nav > .open > a:focus .caret {
+    border-top-color: #555;
+    border-bottom-color: #555;
+}
+/* Mobile version */
+.navbar-default .navbar-toggle {
+    border-color: #DDD;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #DDD;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #CCC;
+}
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #777;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+          color: #333;
+    }
+}
