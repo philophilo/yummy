@@ -133,3 +133,25 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('login'))
 
+@app.route('/delete/recipe/<recipe_id>', methods=['GET', 'POST'])
+def delete_recipe(recipe_id):
+    error = None
+    user = application.get_user(session['username'])
+    if not user:
+        return redirect(url_for('login'))
+    # TODO deleting entire category
+    category = user.categories
+    if not category:
+        flash('Recipe does not exist', 'deleted')
+        return redirect(url_for('yummy'))
+
+    yummy_recipes = get_user_recipes(user.categories)
+    if request.method == 'GET':
+        if user.delete_category(recipe_id):
+            flash("You have successfully deleted the recipe")
+            return redirect(url_for('yummy'))
+        error = "could not delete the specified recipe"
+    return render_template('profile.html', error=error,
+                           yummy_recipes=yummy_recipes,
+                           user=user)
+
