@@ -112,7 +112,6 @@ def add_recipe():
                 return redirect(url_for('recipes_feed'))
             add_error="The category exists already"
     session.pop('flashes', None)
-    print user.name
     return render_template('add_recipe.html',
                            add_error=add_error, user=user)
 
