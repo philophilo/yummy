@@ -155,3 +155,33 @@ def delete_recipe(recipe_id):
                            yummy_recipes=yummy_recipes,
                            user=user)
 
+
+@app.route('/update', methods=['GET', 'POST'])
+def update_recipe():
+    error = None
+    user = application.get_user(session['username'])
+    if not user:
+        return redirect(url_for('login'))
+    if request.form['category_id'] and request.form['recipe_id']:
+        category_id = request.form['category_id']
+        recipe_id = request.form['recipe_id']
+
+        category = user.get_category(category_id)
+        if not category:
+            return redirect(url_for('yummy'))
+
+        cat_name = request.form['name']
+        recipe_name = request.form['recipe-name']
+        if cat_name:
+            if user.update_category(category_id, cat_name):
+                if category.update_recipe(recipe_id, recipe_name,
+                                          request.form['ingredients'],
+                                          datetime.datetime.now()):
+                    flash("You have successfully updated you recipes")
+                    return redirect(url_for('yummy'))
+        error = "please provide the category name"
+    yummy_recipes = get_user_recipes(user.categories)
+    return render_template('profile.html',
+                           yummy_recipes = yummy_recipes,
+                           yummy_error=error,
+                           user = user)
