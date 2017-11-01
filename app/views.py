@@ -156,6 +156,7 @@ def delete_recipe(recipe_id):
                            user=user)
 
 
+# update
 @app.route('/update', methods=['GET', 'POST'])
 def update_recipe():
     error = None
