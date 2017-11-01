@@ -117,3 +117,14 @@ def add_recipe():
                            add_error=add_error, user=user)
 
 
+@app.route('/recipes_feed', methods=['GET', 'POST'])
+def recipes_feed():
+    feed_error = None
+    user = application.get_user(session['username'])
+    if not user:
+        return redirect(url_for('login'))
+    yummy_recipes = get_all_user_recipes()
+    return render_template('index_feed.html', user=user,
+                           yummy_recipes=yummy_recipes,
+                           feed_error=feed_error)
+
