@@ -128,3 +128,8 @@ def recipes_feed():
                            yummy_recipes=yummy_recipes,
                            feed_error=feed_error)
 
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('login'))
+
