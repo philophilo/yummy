@@ -56,3 +56,24 @@ def signup():
     error = "Method not allowed"
     return render_template("index.html", error=error)
 
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    login_error = None
+    if request.method == 'POST':
+        if request.form['password'] and request.form['username']:
+            if application.does_user_exist(
+                request.form['username']):
+                if application.login_user(request.form['username'],
+                                          request.form['password']):
+                    session['username'] = request.form['username']
+                    flash('you have successfully logged in',
+                          'login_success')
+                    return redirect(url_for('yummy'))
+            login_error = "No such account found, please signup"
+            return render_template('index.html',
+                                   login_error = login_error)
+        login_error = "Username and password cannot be empty"
+        return render_template('index.html', login_error=login_error)
+    return render_template('index.html', login_error=login_error)
+
