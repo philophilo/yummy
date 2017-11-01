@@ -77,3 +77,43 @@ def login():
         return render_template('index.html', login_error=login_error)
     return render_template('index.html', login_error=login_error)
 
+
+@app.route('/yummy', methods=['GET', 'POST'])
+def yummy():
+    yummy_error = None
+    user = application.get_user(session['username'])
+    if not user:
+        return redirect(url_for('login'))
+    session.pop('flashes', None)
+    yummy_recipes = get_user_recipes(user.categories)
+    return render_template('profile.html',
+                           yummy_recipes = yummy_recipes,
+                           yummy_error=yummy_error,
+                           user = user)
+
+@app.route('/add_recipe', methods=['GET', 'POST'])
+def add_recipe():
+    add_error = None
+    user = application.get_user(session['username'])
+    if not user:
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        name = request.form['name']
+        category_id = application.generate_random_key()
+        if user.create_user_category(Categories(category_id, name)):
+            category = user.get_category(category_id)
+            if category.create_recipe(
+                Recipes(application.generate_random_key(),
+                        request.form['recipe-name'],
+                        request.form['ingredients'],
+                        datetime.datetime.now())):
+                flash("The recipe has successfully been added")
+                return redirect(url_for('recipes_feed'))
+            add_error="The category exists already"
+    session.pop('flashes', None)
+    print user.name
+    return render_template('add_recipe.html',
+                           add_error=add_error, user=user)
+
+
