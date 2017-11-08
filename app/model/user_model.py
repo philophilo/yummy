@@ -21,14 +21,16 @@ class User:
         return False
 
     def create_user_category(self, category):
+        print(self.check_category_id(category), "<<<<")
         if not self.check_category_id(category):
             return False
+        """
         found_category_key = self.check_category_name(category)
         print(found_category_key)
 
         if found_category_key:
             return False
-        """
+
         if not found_category_key:
             self.categories[category.id] = category
             return True
