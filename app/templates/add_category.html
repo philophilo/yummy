@@ -72,38 +72,15 @@
 								<div class="media-body">
                                     <a href=""><h3 class="media-heading">{{ user.name.upper() }}</h3></a>
 									<div class="post-content">
-										<form action="/add_recipe" method="post" class="form-horizontal">
-											
+										<form action="/add_category" method="post" class="form-horizontal">
 											
 											<div class="form-group">
 												<label for="user-post" class="col-lg-2 control-label">Recipe category</label>
-
-												<div class="col-lg-10">
-                                                <select name="name", id="user-post">
-                                                    <option value="select">--SELECT--</option>
-                                                    {% for k, v in user_categories.items() %}
-                                                    <option value=" {{k}} "> {{ v.name }} </option>
-											        {% endfor %}
-                                                </select>
-												</div>
-											</div><!-- end form group -->
-											
-											<div class="form-group">
-												<label for="user-recipe" class="col-lg-2 control-label">recipe name</label>
 											
 												<div class="col-lg-10">
-													<input type="text" class="form-control" id="user-recipe" name="recipe-name" placeholder="Name your recipe">
+													<input type="text" class="form-control" id="user-post" name="name" placeholder="Name your shopping list">
 												</div>
 											</div><!-- end form group -->
-											<div class="form-group">
-												<label for="post-detail" class="col-lg-2 control-label">Ingredients</label>
-											
-												<div class="col-lg-10">
-													<textarea class="form-control" id="post-detail" name="ingredients" placeholder="List your items here with '-- item'" cols="20" rows="10"></textarea>
-												</div>
-											</div><!-- end form group -->
-											
-											
 											
 											<div class="form-group">
 												<div class="col-lg-10 col-lg-offset-2">

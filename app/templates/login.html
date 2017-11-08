@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>
+			Add recipe
+		</title>
+		
+		<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../static/css/style.css" rel="stylesheet">
+		
+		<style>
+		
+		</style>
+		
+		
+	</head>
+	
+	<body data-spy="scroll" data-target="#my-navbar">
+		
+		<!-- Nav bar -->
+		<nav class="navbar navbar-inverse navbar-fixed-top" id="my-navbar">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="buton" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse" style="border:1px #fff solid;">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					
+					<a href="#" class="navbar-brand"><img src="../static/images/recipe-logo.png"></a>
+					
+				</div> <!-- end header -->
+			</div><!-- end container -->
+		</nav><!-- end navbar -->
+		
+		
+		<div class="container wrapper">
+			<section>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="upload-wrapper">
+							<div class="media media-top">
+								<div class="media-body">
+                                    <a href=""><h3 class="media-heading">LOGIN</h3></a>
+									<div class="post-content">
+
+										<form action="/login" method="post" class="form-horizontal">	
+											
+											<div class="form-group">
+												<label for="username" class="col-lg-2 control-label">Username</label>
+											
+												<div class="col-lg-10">
+													<input type="text" class="form-control" id="username" name="username" placeholder="Username">
+												</div>
+											</div><!-- end form group -->
+											
+											<div class="form-group">
+												<label for="password" class="col-lg-2 control-label">Password</label>
+											
+												<div class="col-lg-10">
+													<input type="text" class="form-control" id="password" name="password" placeholder="Password">
+												</div>
+											</div><!-- end form group -->
+											
+											<div class="form-group">
+												<div class="col-lg-10 col-lg-offset-2">
+													<button type="submit" class="btn btn-primary pull-right">login</button>
+                                                    <a href="/signup"><button type="button" class="btn btn-success pull-right"> Back </button></a>
+
+												</div>
+											</div>
+
+										</form>
+
+									</div>
+									
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					
+				</div>
+			</section>
+		</div>
+		<script src="../static/js/jquery.js"></script>
+		<script src="../static/js/bootstrap.min.js"></script>
+		
+	</body>
+	
+</html>

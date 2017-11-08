@@ -10,29 +10,21 @@ class User:
             return False
         return True
 
-    def check_category_name(self, category):
-        for key, category_object in self.categories.items():
-            if category.name == category_object.name:
-                print(category.name, ";;;`", category_object.name)
-                return key
-                #found = list(self.categories.keys())[list(self.categories.values()).index(category)]
-                #print(found)
-                #return found
+    def check_category_name(self, cat):
+        for cat_obj in self.categories.values():
+            if cat.name == cat_obj.name:
+                found = list(self.categories.keys())[list(self.categories.values()).index(cat)]
+                return found
         return False
 
     def create_user_category(self, category):
         if not self.check_category_id(category):
             return False
         found_category_key = self.check_category_name(category)
-        print(found_category_key)
-
-        if found_category_key:
-            return False
-        """
         if not found_category_key:
             self.categories[category.id] = category
             return True
-
+            """
         else:
             print(found_category_key, ";;;;")
             self.categories[found_category_key].append(category)
