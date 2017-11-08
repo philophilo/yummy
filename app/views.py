@@ -183,6 +183,43 @@ def add_category():
                            add_error=add_error, user=user)
 
 
+@app.route('/view_categories', methods=['GET', 'POST'])
+def view_categories():
+    error = None
+    user = application.get_user(session['username'])
+    if not user:
+        return redirect(url_for('login'))
+    categories = user.categories
+    return render_template('view_categories.html',
+                           categories=categories,
+                           user=user)
+
+
+@app.route('/update/categories', methods=['GET', 'POST'])
+def update_categories():
+    error = None
+    user = application.get_user(session['username'])
+    if not user:
+        return redirect(url_for('login'))
+    user_categories = {}
+    if user.categories.keys():
+        user_categories = user.categories
+    if request.form['name'] and request.form['category_id']:
+        category = user.get_category(request.form['category_id'])
+        if not category:
+            return redirect(url_for('yummy'))
+        if user.update_category(request.form['category_id'],
+                                request.form['name']):
+            flash("You have successfully updated you recipes")
+            return redirect(url_for('view_categories'))
+    yummy_recipes = get_user_recipes(user.categories)
+    return render_template('profile.html',
+                           yummy_recipes = yummy_recipes,
+                           yummy_error=error,
+                           user = user,
+                           user_categories = user_categories)
+
+
 @app.route('/recipes_feed', methods=['GET', 'POST'])
 def recipes_feed():
     feed_error = None
@@ -199,8 +236,8 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('login'))
 
-@app.route('/delete/recipe/<recipe_id>', methods=['GET', 'POST'])
-def delete_recipe(recipe_id):
+@app.route('/delete/recipe/<category_id>/<recipe_id>', methods=['GET', 'POST'])
+def delete_recipe(category_id, recipe_id):
     error = None
     user = application.get_user(session['username'])
     if not user:
@@ -214,7 +251,7 @@ def delete_recipe(recipe_id):
     yummy_recipes = get_user_recipes(user.categories)
 
     if request.method == 'GET':
-        if user.delete_category(recipe_id):
+        if user.categories[category_id].delete_recipe(recipe_id):
             flash("You have successfully deleted the recipe")
             return redirect(url_for('yummy'))
         error = "could not delete the specified recipe"

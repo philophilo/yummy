@@ -117,7 +117,7 @@
 										<div class="item-details">
                                             <ul>
                                             {%  for value in value['items'].split("--") %}
-                                                <li>{{ value }}</li>
+                                                <li>{{value}}</li>
 
                                             {% endfor %}
 
@@ -134,7 +134,7 @@
 								<p class="pull-right">
 									<a href="#" class="">Comment</a>
                                     <a href="#myModal"i class="picker" role="button" data-toggle="modal" data-id="{{ value['category_key'] }} ??? {{ value['items'] }} ??? {{ value['category_name'] }} ??? {{ value['recipe_id'] }} ??? {{ value['recipe_name'] }}" class="ex-modal">Edit</a>
-                                    <a href="/delete/recipe/{{ value['category_key'] }}" class="">Delete</a>
+                                    <a href="/delete/recipe/{{value['category_key']}}/{{value['recipe_id']}}" class="">Delete</a>
 								</p>
 							</div>
 						</div>
