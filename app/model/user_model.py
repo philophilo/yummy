@@ -40,7 +40,8 @@ class User:
             self.categories[found_category_key].append(category)
             print(self.categories)
             """
-        self.categories[category.id] = category
+        self.categories[category.id] = []
+        self.categories[category.id].append(category)
         return True
         """
         for cat_obj in self.categories.values():
