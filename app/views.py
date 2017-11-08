@@ -165,6 +165,8 @@ def add_recipe():
                            user_categories=user_categories)
 
 
+
+
 @app.route("/add_category", methods=['GET', 'POST'])
 def add_category():
     add_error = None
@@ -194,6 +196,40 @@ def view_categories():
                            categories=categories,
                            user=user)
 
+
+@app.route('/view_category/<category_id>', methods=['GET'])
+def view_category_recipes(category_id):
+    error = None
+    user = application.get_user(session['username'])
+    if not user:
+        return redirect(url_for('login'))
+    user_categories = {}
+    if user.categories.keys():
+        user_categories = user.categories
+    if category_id:
+        category = user.get_category(category_id)
+        if not category:
+            return redirect(url_for('view_categories'))
+        print(type(category), category)
+        category_recipes = {}
+        for each_recipe in category.all_recipes:
+            for recipe in each_recipe.values():
+                print(recipe.name, ".......................")
+                category_recipes[recipe.id] = {
+                    'category_key': category_id,
+                    'items': recipe.ingredients,
+                    'date': recipe.date,
+                    'recipe_name':  recipe.name,
+                    'category_name':category.name,
+                    'recipe_id': recipe.id}
+        print(category_recipes)
+        return render_template('view_category_recipes.html',
+                           yummy_recipes = category_recipes,
+                           yummy_error=error,
+                           user_categories = user_categories,
+                           user = user)
+        #print(get_user_recipes(category))
+    return "Hello"
 
 @app.route('/update/categories', methods=['GET', 'POST'])
 def update_categories():
