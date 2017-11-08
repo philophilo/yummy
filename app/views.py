@@ -13,18 +13,24 @@ application = Application()
 def get_user_recipes(categories):
     category_recipes = dict()
     for key, value in categories.items():
-        for recipe in value.recipes.values():
-            category_recipes[key] = {
-                'items': recipe.ingredients,
-                'date': recipe.date,
-                'recipe_name':  recipe.name,
-                'category_name':value.name,
-                'recipe_id': recipe.id}
+        """for list_index, list_item in enumerate(value):
+            print(list_item.all_recipes, "=======")"""
+        for each_recipe in value.all_recipes:
+            for recipe in each_recipe.values():
+                print(recipe.name, ".......................")
+                category_recipes[recipe.id] = {
+                    'category_key': key,
+                    'items': recipe.ingredients,
+                    'date': recipe.date,
+                    'recipe_name':  recipe.name,
+                    'category_name':value.name,
+                    'recipe_id': recipe.id}
     return category_recipes
 
 def get_all_user_recipes():
     all_data = dict()
     for user, data in application.users.items():
+        print(get_user_recipes(data.categories))
         all_data[user] = {"data": get_user_recipes(data.categories)}
     return all_data
 
@@ -85,11 +91,17 @@ def yummy():
     user = application.get_user(session['username'])
     if not user:
         return redirect(url_for('login'))
+    user_categories = {}
+    if user.categories.keys():
+        user_categories = user.categories
     session.pop('flashes', None)
+    print(user.categories, "<><><>")
     yummy_recipes = get_user_recipes(user.categories)
+    print(yummy_recipes, "---------------")
     return render_template('profile.html',
                            yummy_recipes = yummy_recipes,
                            yummy_error=yummy_error,
+                           user_categories = user_categories,
                            user = user)
 
 @app.route('/add_recipe', methods=['GET', 'POST'])
@@ -101,7 +113,6 @@ def add_recipe():
     user_categories = dict()
     if user.categories.keys():
         user_categories = user.categories
-    print("..", user_categories)
 
     if request.method == 'POST':
         category_id = request.form['name'].strip()
@@ -109,11 +120,22 @@ def add_recipe():
         #if user_categories:
         #    print(name)
         category = user.get_category(category_id)
-        print(",,,,,", user_categories[category_id].name, category)
+
         if category:
-            print(category)
+            #for k, category in enumerate(categories):
+            #    print(category, category.name, "<><><><><><>")
+            if category.create_recipe(
+                Recipes(application.generate_random_key(),
+                    request.form['recipe-name'],
+                    request.form['ingredients'],
+                    datetime.datetime.now())):
+                flash("The recipe has successfully been added")
+                return redirect(url_for('recipes_feed'))
+            add_error="The recipe exists already"
+
             #if user.get_category(category_id):
             #    category = user.get_category(category_id)
+            """
             if category.create_recipe(
                 Recipes(application.generate_random_key(),
                         request.form['recipe-name'],
@@ -124,7 +146,7 @@ def add_recipe():
                 return redirect(url_for('recipes_feed'))
             print("categories---")
             add_error="The recipe exists already"
-            """
+            ------ old ----
             if user.create_user_category(Categories(category_id, name)):
                 category = user.get_category(category_id)
                 if category.create_recipe(
@@ -190,6 +212,7 @@ def delete_recipe(recipe_id):
         return redirect(url_for('yummy'))
 
     yummy_recipes = get_user_recipes(user.categories)
+
     if request.method == 'GET':
         if user.delete_category(recipe_id):
             flash("You have successfully deleted the recipe")

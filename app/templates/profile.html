@@ -71,7 +71,7 @@
 								<h3 class="media-heading"> {{ user.name }} </h3>
 								<div class="post-content">
 									<h5 class="media-heading">About you</h5>
-									<div class="bucket-details">
+									<div class="item-details">
 										{% with messages = get_flashed_messages(with_categories=true) %}
 											{% if messages %}
 												{% for category, message in messages %}
@@ -133,8 +133,8 @@
 							<div class="comments">
 								<p class="pull-right">
 									<a href="#" class="">Comment</a>
-                                    <a href="#myModal"i class="picker" role="button" data-toggle="modal" data-id="{{ key }} ??? {{ value['items'] }} ??? {{ value['category_name'] }} ??? {{ value['recipe_id'] }} ??? {{ value['recipe_name'] }}" class="ex-modal">Edit</a>
-                                    <a href="/delete/recipe/{{ key }}" class="">Delete</a>
+                                    <a href="#myModal"i class="picker" role="button" data-toggle="modal" data-id="{{ category_key }} ??? {{ value['items'] }} ??? {{ value['category_name'] }} ??? {{ value['recipe_id'] }} ??? {{ value['recipe_name'] }}" class="ex-modal">Edit</a>
+                                    <a href="/delete/recipe/{{ category_key }}" class="">Delete</a>
 								</p>
 							</div>
 						</div>
@@ -176,9 +176,12 @@
 											<div class="form-group">
 												<label for="name" class="col-lg-2 control-label">Recipe category</label>
 											
-												<div class="col-lg-10">
-                                                    <input type="text" class="form-control" id="name" name="name">
-												</div>
+                                                <select name="name", id="name">
+                                                    <option id="name" value="">--SELECT--</option>
+                                                    {% for k, v in user_categories.items() %}
+                                                            <option value=" {{k}} "> {{ v.name }} </option>
+											        {% endfor %}
+                                                </select>
 											</div><!-- end form group -->
 											
 											<div class="form-group">
@@ -232,7 +235,7 @@
 		        console.log(myBookId)
 		        items = myBookId.split(" ??? ")
 		        console.log('..', items[2], items[3])
-		        $("#myModal").find('#name').val(items[2])
+		        // $("#myModal").find('#name').val(items[2])
 		        $("#myModal").find('#category_id').val(items[0])
 		        $("#myModal").find('#recipe_id').val(items[3])
 		        $("#myModal").find('#ingredients').text(items[1])
