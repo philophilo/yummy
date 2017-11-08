@@ -133,8 +133,8 @@
 							<div class="comments">
 								<p class="pull-right">
 									<a href="#" class="">Comment</a>
-                                    <a href="#myModal"i class="picker" role="button" data-toggle="modal" data-id="{{ category_key }} ??? {{ value['items'] }} ??? {{ value['category_name'] }} ??? {{ value['recipe_id'] }} ??? {{ value['recipe_name'] }}" class="ex-modal">Edit</a>
-                                    <a href="/delete/recipe/{{ category_key }}" class="">Delete</a>
+                                    <a href="#myModal"i class="picker" role="button" data-toggle="modal" data-id="{{ value['category_key'] }} ??? {{ value['items'] }} ??? {{ value['category_name'] }} ??? {{ value['recipe_id'] }} ??? {{ value['recipe_name'] }}" class="ex-modal">Edit</a>
+                                    <a href="/delete/recipe/{{ value['category_key'] }}" class="">Delete</a>
 								</p>
 							</div>
 						</div>
@@ -178,7 +178,7 @@
 											
                                                 <select name="name", id="name">
                                                     <option id="name" value="">--SELECT--</option>
-                                                    {% for k, v in user_categories.items() %}
+                                                    {% for v in user_categories.values() %}
                                                             <option value=" {{k}} "> {{ v.name }} </option>
 											        {% endfor %}
                                                 </select>
@@ -199,8 +199,8 @@
 													<textarea class="form-control" id="ingredients" name="ingredients" placeholder="Add a few details" cols="20" rows="10"></textarea>
 												</div>
 											</div><!-- end form group -->
-										    <input type="hidden" id="category_id" name="category_id">	
-                                            <input type="hidden" id="recipe_id" name="recipe_id">
+										    <input type="text" id="category_id" name="category_id">	
+                                            <input type="text" id="recipe_id" name="recipe_id">
 											
 											<div class="form-group">
 												<div class="col-lg-10 col-lg-offset-2">
