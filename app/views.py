@@ -219,6 +219,28 @@ def update_categories():
                            user = user,
                            user_categories = user_categories)
 
+@app.route('/delete/categories/<category_id>', methods=['GET', 'POST'])
+def delete_category(category_id):
+    error = None
+    user = application.get_user(session['username'])
+    if not user:
+        return redirect(url_for('login'))
+    # TODO deleting entire category
+    category = user.categories
+    if not category:
+        flash('Recipe does not exist', 'deleted')
+        return redirect(url_for('yummy'))
+
+    yummy_recipes = get_user_recipes(user.categories)
+
+    if request.method == 'GET':
+        if user.delete_category(category_id):
+            flash("You have successfully deleted the recipe")
+            return redirect(url_for('yummy'))
+        error = "could not delete the specified category"
+    return render_template('profile.html', error=error,
+                           yummy_recipes=yummy_recipes,
+                           user=user)
 
 @app.route('/recipes_feed', methods=['GET', 'POST'])
 def recipes_feed():
