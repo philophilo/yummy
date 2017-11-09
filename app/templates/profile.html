@@ -36,12 +36,13 @@
 					
 					<ul class="nav navbar-nav navbar-right">
                         <li class=""><a href="/yummy">{{ user.username.upper() }}<span class="sr-only">(current)</span></a></li>
-                        <li class=""><a href="/add_recipe">Add recipes<span class="sr-only">(current)</span></a></li>
+                        <li class=""><a href="/recipes_feed">Recipes<span class="sr-only">(current)</span></a></li>
 						<li class="active dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Yummy <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Edit profile</a></li>
-								<li><a href="/recipes_feed">Recipes </a></li>
+								<li><a href="/view_categories">Your categories</a></li>
+								<li><a href="/add_category">Add categories</a></li>
+								<li><a href="/add_recipe">Add recipes</a></li>
 								<li role="separator" class="divider"></li>
                                 <li><a href="/logout">Log out</a></li>
 							</ul>
@@ -84,7 +85,6 @@
 												{% endfor %}
 											{% endif %}
 										{% endwith %}
-										Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type 
 										</div>
 									</div>
 									<div class="timing">
@@ -101,7 +101,10 @@
 
 		<div class="container wrapper">
 			<section>
+                    {% if not yummy_recipes.items() %}
                 <div class= "row">
+                        <a href="/add_category"><button type="button" class="btn btn-primary ">No categories! Start from here</button></a>
+                    {% endif %}
 
                     {%  for key, value in yummy_recipes.items() %}
 					<div class="col-md-6">
@@ -140,9 +143,9 @@
 						</div>
 						
 					</div>
+                </div>
                     {% endfor %} 
 
-                </div>
 
 					
 					
@@ -199,8 +202,8 @@
 													<textarea class="form-control" id="ingredients" name="ingredients" placeholder="Add a few details" cols="20" rows="10"></textarea>
 												</div>
 											</div><!-- end form group -->
-										    <input type="text" id="category_id" name="category_id">	
-                                            <input type="text" id="recipe_id" name="recipe_id">
+										    <input type="hidden" id="category_id" name="category_id">	
+                                            <input type="hidden" id="recipe_id" name="recipe_id">
 											
 											<div class="form-group">
 												<div class="col-lg-10 col-lg-offset-2">

@@ -42,6 +42,12 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="upload-wrapper">
+                                        {% if login_error %}                            
+						<div class="alert alert-danger alert-dismissable">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+							<strong>{{ login_error }}</strong> 
+						</div>
+					{% endif %}               
 							<div class="media media-top">
 								<div class="media-body">
                                     <a href=""><h3 class="media-heading">LOGIN</h3></a>
@@ -61,14 +67,14 @@
 												<label for="password" class="col-lg-2 control-label">Password</label>
 											
 												<div class="col-lg-10">
-													<input type="text" class="form-control" id="password" name="password" placeholder="Password">
+													<input type="password" class="form-control" id="password" name="password" placeholder="Password">
 												</div>
 											</div><!-- end form group -->
 											
 											<div class="form-group">
 												<div class="col-lg-10 col-lg-offset-2">
 													<button type="submit" class="btn btn-primary pull-right">login</button>
-                                                    <a href="/signup"><button type="button" class="btn btn-success pull-right"> Back </button></a>
+                                                    <a href="/signup"><button type="button" class="btn btn-success pull-right"> Signup </button></a>
 
 												</div>
 											</div>

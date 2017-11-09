@@ -59,7 +59,6 @@ def signup():
                                        credentials proceed to login")
             error="password do not match"
             return render_template("index.html", error=error)
-    error = "Method not allowed"
     return render_template("index.html", error=error)
 
 
@@ -77,11 +76,11 @@ def login():
                           'login_success')
                     return redirect(url_for('yummy'))
             login_error = "No such account found, please signup"
-            return render_template('index.html',
+            return render_template('login.html',
                                    login_error = login_error)
         login_error = "Username and password cannot be empty"
-        return render_template('index.html', login_error=login_error)
-    return render_template('index.html', login_error=login_error)
+        return render_template('login.html', login_error=login_error)
+    return render_template('login.html', login_error=login_error)
 
 
 
@@ -178,7 +177,7 @@ def add_category():
         name = request.form['name']
         category_id = application.generate_random_key()
         if user.create_user_category(Categories(category_id, name)):
-            return  redirect(url_for('yummy'))
+            return  redirect(url_for('view_categories'))
         # TODO create a flash message
         print("...", "false returned")
     return render_template('add_category.html',
