@@ -12,13 +12,15 @@ Getting Started
 
 Prerequisites
 
-Python 3+ python-pip pylint virtualenv or virtualevwrapper
+- Python 3+ 
+- python-pip 
+- virtualenv
 
 Installation
 
 Clone the repo
 
-$ git clone https://github.com/philophilo/yummy 
+$ git clone https://github.com/philophilo/yummy.git
 
 $ cd yummy
 
