@@ -15,6 +15,10 @@ class TestUserCategory(unittest.TestCase):
         self.user.categories = {"AZXDJSA": self.category}
         self.assertFalse(self.user.create_user_category(self.category))
 
+    def test_user_category_exists_by_name(self):
+        self.user.categories = {"AZJSA": self.category}
+        #self.assertFalse(self.user.create_user_category(self.category))
+
     def test_correct_category_list_returned_by_id(self):
         self.user.categories = {"AZXDJSA": self.category}
         self.assertEqual(self.user.get_category("AZXDJSA"),

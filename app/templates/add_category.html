@@ -5,17 +5,13 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>
-			Yummy recipes
+			Add recipe
 		</title>
 		
 		<link href="../static/css/bootstrap.min.css" rel="stylesheet">
 		<link href="../static/css/style.css" rel="stylesheet">
 		
 		<style>
-		body
-		{
-			padding-top: 50px;
-		}
 		
 		</style>
 		
@@ -38,6 +34,7 @@
 					
 				</div> <!-- end header -->
 				<div class="collapse navbar-collapse" id="navbar-collapse">
+					
 					<ul class="nav navbar-nav navbar-right">
                         <li class=""><a href="/yummy">{{ user.username.upper() }}<span class="sr-only">(current)</span></a></li>
                         <li class=""><a href="/recipes_feed">Recipes<span class="sr-only">(current)</span></a></li>
@@ -63,52 +60,42 @@
 			</div><!-- end container -->
 		</nav><!-- end navbar -->
 		
+		
 		<div class="container wrapper">
 			<section>
-
-                <div class= "row">
-
-                    {%  for user, data in yummy_recipes.items() %}
-                        {%  for key, value in data['data'].items() %}
-					<div class="col-md-6">
-						<div class="media-wrapper">
-							<div class="media">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="upload-wrapper">
+							<div class="media media-top">
 								<a class="media-left" href="#">
 									<img src="../static/images/user.png">
 								</a>
 								<div class="media-body">
-                                    <a href="" class=""><h5 class="media-heading">{{ user }}</h5></a>
+                                    <a href=""><h3 class="media-heading">{{ user.name.upper() }}</h3></a>
 									<div class="post-content">
-                                        <h4 class="media-heading">{{ value['category_name'] }} - {{ value['recipe_name'] }}</h4>
-										<div class="item-details">
-                                            <ul>
-                                            {%  for value in value['items'].split("--") %}
-                                                <li>{{ value }}</li>
-
-                                            {% endfor %}
-
-                                            </ul>
-										</div>
+										<form action="/add_category" method="post" class="form-horizontal">
+											
+											<div class="form-group">
+												<label for="user-post" class="col-lg-2 control-label">Recipe category</label>
+											
+												<div class="col-lg-10">
+													<input type="text" class="form-control" id="user-post" name="name" placeholder="Name your shopping list">
+												</div>
+											</div><!-- end form group -->
+											
+											<div class="form-group">
+												<div class="col-lg-10 col-lg-offset-2">
+													<button type="submit" class="btn btn-primary pull-right">Save</button>
+												</div>
+											</div>
+										</form>
 									</div>
-									<div class="timing">
-                                        <span class="pull-right posted-date">Posted: {{ value.date }}</span>
-									</div>
+									
 								</div>
-								
 							</div>
-							<div class="comments">
-								<p class="pull-right">
-									<a class="">Comment</a>
-								</p>
-							</div>
+							
 						</div>
-						
 					</div>
-                        {% endfor %} 
-                    {% endfor %} 
-
-                </div>
-
 					
 				</div>
 			</section>

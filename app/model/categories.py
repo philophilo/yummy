@@ -2,12 +2,15 @@ class Categories():
     def __init__(self, id, name):
         self.id = id
         self.name = name
+        self.all_recipes = []
         self.recipes = {}
 
     def create_recipe(self, recipe):
-        if recipe.id in self.recipes.keys():
+        if (recipe.id in self.recipes.keys()) or \
+                (recipe.name in self.recipes.values()):
             return False
         self.recipes[recipe.id] = recipe
+        self.all_recipes.append(self.recipes)
         return True
 
     def get_recipe(self, list_id):
